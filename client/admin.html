@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>jool</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="public/css/main.css">
+    <link rel="shortcut icon" href="controller.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">jool</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="games.html">Catalog</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" id="signin-button">
+                <button type="submit" class="btn btn-primary">Sign in</button>
+            </form>
+            <form class="form-inline my-2 my-lg-0 ml-3" id="signup-button">
+                <button type="submit" class="btn btn-primary">Sign up</button>
+            </form>
+            <div class="dropdown show dropleft" id="dropdownProfile">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Profile
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="userProfile.html">Profile</a>
+                    <a class="dropdown-item" href="orderList.html">Orders</a>
+                    <a class="dropdown-item" href="admin.html" id="adminPanel">Admin panel</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" id="logout">Log out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container mt-5" id="all-content">
+        <div class="row justify-content-start">
+            <div class="col-9">
+                <h3 class="text-left">Games</h3>
+                <div class="table-responcive">
+                    <table class="table table-hover table-sm" id="gamesTable">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Categories</th>
+                                <th scope="col">Developer</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="gameTable">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-2">
+                <br> <br>
+                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add new game</button></p>
+
+                <div id="myModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add new game</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="addGameForm">
+                                    <span id="errorMessage" style="color: red;"></span>
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" id="gameName" placeholder="Enter game name" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea class="form-control" id="gameDescription" required></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Price</label>
+                                        <input type="number" step="0.1" class="form-control" id="gamePrice" placeholder="Enter game name" required min="0" max="9999.99">
+                                    </div>
+
+                                    <div class="checkbox">
+                                        <label>Select categories</label><br>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="dev">Developer:</label>
+                                        <select class="form-control" id="dev">
+                                        </select>
+                                    </div>
+
+                                    <button class="btn btn-success btn-block" type="submit">Add game</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Close</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCategoryModal">Add new category</button></p>
+
+                <div id="addCategoryModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add new category</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="addCategoryForm">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" id="categoryName" placeholder="Enter category name" required>
+                                    </div>
+                                    <button class="btn btn-success btn-block" type="submit">Add category</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Close</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addDeveloperModal">Add new developer</button></p>
+
+                <div id="addDeveloperModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add new developer</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="addDeveloperForm">
+                                    <span id="errorMessage" style="color: red;"></span>
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" id="developerName" placeholder="Enter developer name" required>
+                                    </div>
+                                    <button class="btn btn-success btn-block" type="submit">Add developer</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Close</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#manageCategories">Manage categories</button></p>
+
+                <div id="manageCategories" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add new category</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="addCategoriesForm">
+                                    <span id="errorMessage" style="color: red;"></span>
+                                    <div class="form-group">
+                                        <label>Categories</label>
+                                        <table class="table table-hover" id="categoriesTable">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Name</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="categoriesTable">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Close</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#manageDevelopers">Manage developers</button></p>
+
+                <div id="manageDevelopers" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add new developer</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="addDevelopersForm">
+                                    <span id="errorMessage" style="color: red;"></span>
+                                    <div class="form-group">
+                                        <label>Categories</label>
+                                        <table class="table table-hover" id="developersTable">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Name</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="developersTable">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Close</button></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="orders">
+                    <p><button type="button" class="btn btn-primary">Orders</button></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+
+        <div class="container">
+            <ul class="foote_bottom_ul_amrc">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <!--foote_bottom_ul_amrc ends here-->
+
+
+            <ul class="social_footer_ul">
+                <li><a href="https://www.linkedin.com/in/rostyslav-khasanov-284855156/"><i class="fab fa-linkedin"></i></a></li>
+                <li><a href="https://www.instagram.com/nejtr1no/"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="https://github.com/RostyslavKhasanov"><i class="fab fa-github"></i></a></li>
+            </ul>
+            <br>
+            <p class="text-center">Copyright @2019 | Developed by <a href="#">Rostyslav Khasanov</a></p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="public/js/jquery.min.js"></script>
+    <script src="public/js/bootstrap.min.js"></script>
+    <script src="public/js/global.js"></script>
+    <script>
+        const SERVER_URL = 'http://localhost:8080/';
+
+        if (token) {
+            $.ajaxSetup({
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+        }
+
+
+
+        $(document).ready(function() {
+            if (role === 'ROLE_USER') {
+                window.location.href = 'home.html';
+            }
+            getGames();
+            getCategories();
+            getDevelopers();
+
+        });
+
+        $(document).on('change', '#gamesTable tbody input', function(e) {
+            let elementId = e.target.id;
+            console.log(elementId);
+            let gameId = elementId.split('-')[1];
+            console.log(gameId);
+            uploadFile(gameId);
+        });
+
+        function uploadFile(gameId) {
+            let formData = new FormData();
+            formData.append('file', $('#image-' + gameId)[0].files[0]);
+            $.ajax({
+                url: SERVER_URL + 'games/' + gameId + '/image',
+                method: 'POST',
+                contentType: false,
+                processData: false,
+                data: formData,
+                complete: function(res) {
+                    if (res.status == 202) {
+                        $('#gamesTable tbody').empty();
+                        getGames();
+                    }
+                }
+            })
+        }
+
+
+        function getGames() {
+            let imgUrl = SERVER_URL + 'games/image?fileName=';
+            $.ajax({
+                url: SERVER_URL + 'games/games',
+                method: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                complete: function(response) {
+                    console.log(response.responseJSON.length);
+                    lengths = response.responseJSON.length;
+                    $.each(response.responseJSON, function(key, value) {
+
+                        var str = "";
+                        for (i = 0; i < value.categories.length; i++) {
+                            str = str + value.categories[i].name + " ";
+                        }
+                        $('#gamesTable tbody').append(
+                            `
+                                <tr>
+                                    <td>${value.id}</td>
+                                    <td>${value.name}</td>
+                                    <td>${value.price}</td>
+                                    <td><img src="${value.image !== null ? (imgUrl + value.image) : ''}" width="90%" height = "11%"></td>
+                                    <td>${str}</td>
+                                    <td>${value.developer.name}</td>
+                                    <td>
+                                        <input type="file" class="form-control" id="image-${value.id}">    
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger btn-sm" id="btn-${value.id}">Delete</button>
+                                    </td>
+
+                                </tr>
+                            `
+                        );
+                    });
+                }
+            });
+        }
+
+        function deleteGame(gameId) {
+            $.ajax({
+                url: SERVER_URL + 'games/' + gameId,
+                method: 'DELETE',
+                dataType: 'json',
+                contentType: 'application/json',
+                complete: function(res) {
+                    if (res.status == 200) {
+                        $('#gamesTable tbody').empty();
+                        getGames();
+                    }
+                }
+            })
+        }
+
+        $(document).on('click', '#gamesTable tbody button', function(e) {
+            console.log(e.target.id);
+            var r = confirm("Ви дійсно хочете видалити цей запис?");
+            if (r == true) {
+                let gameId = e.target.id.split('-')[1];
+                deleteGame(gameId);
+            }
+        });
+
+
+
+        function deleteCategory(categoryId) {
+            $.ajax({
+                url: SERVER_URL + 'categories/' + categoryId,
+                method: 'DELETE',
+                dataType: 'json',
+                contentType: 'application/json',
+                complete: function(res) {
+                    if (res.status == 200) {
+                        location.reload();
+                    }
+                }
+            })
+        }
+
+        $(document).on('click', '#categoriesTable tbody button', function(e) {
+            console.log(e.target.id);
+            var r = confirm("Ви дійсно хочете видалити цей запис?");
+            if (r == true) {
+                let categoryId = e.target.id.split('-')[1];
+                deleteCategory(categoryId);
+            }
+        });
+
+        function deleteDeveloper(developerId) {
+            $.ajax({
+                url: SERVER_URL + 'developers/' + developerId,
+                method: 'DELETE',
+                dataType: 'json',
+                contentType: 'application/json',
+                complete: function(res) {
+                    if (res.status == 200) {
+                        $('#developersTable tbody').empty();
+                        getDevelopers();
+                    }
+                }
+            })
+
+        }
+
+
+        $(document).on('click', '#developersTable tbody button', function(e) {
+            console.log(e.target.id);
+            var r = confirm("Ви дійсно хочете видалити цей запис?");
+            if (r == true) {
+                let developerId = e.target.id.split('-')[1];
+                deleteDeveloper(developerId);
+            }
+        });
+
+
+        function getCategories() {
+            $.ajax({
+                url: SERVER_URL + 'categories/categories',
+                method: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                complete: function(response) {
+                    $.each(response.responseJSON, function(key, value) {
+                        var strId = "checkbox_" + value.id;
+                        $('#addGameForm .checkbox').append(
+                            `
+                        <label class="checkbox-inline"><input type="checkbox" class = "checkbox" id = str>${value.name}</label>
+                            `
+                        );
+
+                        $('#categoriesTable tbody').append(
+                            `
+                                <tr>
+                                    <td>${value.id}</td>
+                                    <td>${value.name}</td>
+                                    <td>
+                                        <button class="btn btn-danger btn-sm" id="btn-${value.id}">Delete</button>
+                                    </td>
+
+                                </tr>
+                            `
+                        );
+                        console.log(value.name)
+                        $(str).attr("id", value.id);
+
+
+                    });
+                }
+            });
+        }
+
+
+        function getDevelopers() {
+            $.ajax({
+                url: SERVER_URL + 'developers',
+                method: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                complete: function(response) {
+                    $.each(response.responseJSON, function(key, value) {
+                        $("#dev").append($('<option value="' + value.id + '">' + value.name + '</option>'));
+                        $('#developersTable tbody').append(
+                            `
+                                <tr>
+                                    <td>${value.id}</td>
+                                    <td>${value.name}</td>
+                                    <td>
+                                        <button class="btn btn-danger btn-sm" id="btn-${value.id}">Delete</button>
+                                    </td>
+
+                                </tr>
+                            `
+                        );
+                    });
+
+                }
+            });
+        }
+
+
+        function addGame() {
+
+            var checked = [];
+            var count = $(':checkbox:checked').length;
+            $('input:checkbox:checked').each(function() {
+                checked.push({
+                    id: $(this).attr("id")
+                });
+            });
+
+
+            let game = {
+                name: $('#gameName').val(),
+                description: $('#gameDescription').val(),
+                price: $('#gamePrice').val(),
+                categories: checked,
+                developer: {
+                    id: $("#dev option:selected").val()
+                }
+            }
+
+            $.ajax({
+                url: SERVER_URL + 'games',
+                method: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(game),
+                complete: function(res) {
+                    console.log(res);
+                    if (res.status == 201) {
+                        alert('Successful');
+                        $('#gamesTable tbody').empty();
+                        getGames();
+                        $('#addGameForm')[0].reset();
+                    }
+                    if (res.status == 409) {
+                        alert("Something wrong...");
+                    }
+                }
+            })
+
+        }
+
+        function addCategory() {
+            let category = {
+                name: $('#categoryName').val()
+            }
+
+            $.ajax({
+                url: SERVER_URL + 'categories',
+                method: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(category),
+                complete: function(res) {
+                    console.log(res);
+                    if (res.status == 201) {
+                        alert('Successful');
+                        $('#categoriesTable tbody').empty();
+                        getCategories();
+                        location.reload();
+                    }
+                    if (res.status == 409) {
+                        alert("Something wrong...");
+                    }
+                }
+            })
+        }
+
+        function addDeveloper() {
+            let developer = {
+                name: $('#developerName').val()
+            }
+
+            $.ajax({
+                url: SERVER_URL + 'developers',
+                method: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(developer),
+                complete: function(res) {
+                    console.log(res);
+                    if (res.status == 201) {
+                        alert('Successful');
+                        $('#developersTable tbody').empty();
+                        getDevelopers();
+                    }
+                    if (res.status == 409) {
+                        alert("Something wrong...");
+                    }
+                }
+            })
+        }
+
+        $('#addGameForm').submit(function(e) {
+            e.preventDefault();
+            addGame();
+        });
+
+        $('#addCategoryForm').submit(function(e) {
+            e.preventDefault();
+            addCategory();
+        });
+
+        $('#addDeveloperForm').submit(function(e) {
+            e.preventDefault();
+            addDeveloper();
+        });
+
+        $(document).on('click', '#orders p button', function(e) {
+            window.location.href = 'orders.html';
+        });
+
+    </script>
+</body>
+
+</html>

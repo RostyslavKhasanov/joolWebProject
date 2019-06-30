@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="public/css/main.css">
+    <link rel="shortcut icon" href="controller.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">jool</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="games.html">Catalog</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" id="signin-button">
+                <button type="submit" class="btn btn-primary">Sign in</button>
+            </form>
+            <form class="form-inline my-2 my-lg-0 ml-3" id="signup-button">
+                <button type="submit" class="btn btn-primary">Sign up</button>
+            </form>
+            <div class="dropdown show dropleft" id="dropdownProfile">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Profile
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="userProfile.html">Profile</a>
+                    <a class="dropdown-item" href="orderList.html">Orders</a>
+                    <a class="dropdown-item" href="admin.html" id="adminPanel">Admin panel</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" id="logout">Log out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container mt-5" id="gameProfileContainer">
+        <div class="row justify-content-start">
+            <div class="col-5 mt-2" id="gameProfile">
+                <div id="imageDev"> </div>
+                <div class="dev"></div>
+                <div class="categories">
+                    <h6>Categories:
+                    </h6>
+                </div>
+                <div class="price"></div>
+                <div id="gameBuy">
+                    <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#buyGame" id="buyButton">Buy</button></p>
+                </div>
+                <div id="buyGame" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Order</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="addOrderForm">
+                                    <span id="errorMessage" style="color: red;"></span>
+                                    <div class="row justify-content-start">
+                                        <div class="col-7" id="photoOrder"></div>
+                                        <div class="col-4" id="orderDescription"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dev">Paymaent method:</label>
+                                        <select class="form-control" id="payment">
+                                            <option value="CARD">Visa/Mastercard</option>
+                                            <option value="WEBMONEY">WebMoney</option>
+                                            <option value="PAYPAL">PayPal</option>
+                                            <option value="YANDEXMONEY">YandexMoney</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-success btn-block" type="submit">Add order</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Close</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-7 mt-2" id="gameDescription">
+                <h3></h3>
+                <p></p>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="feedbackContainer">
+        <div class="form-group">
+            <textarea class="form-control" id="feedbackTextArea" rows="2"></textarea>
+            <p></p>
+            <button type="button" class="btn btn-primary" id="leaveFeedback">Leave feedback</button>
+        </div>
+        <button onclick="window.location='signin.html'" type="button" class="btn btn-primary btn-lg btn-block mb-2" id="loginForView">Log in for veiw comments</button>
+    </div>
+    
+
+
+    <footer class="footer">
+
+        <div class="container">
+            <ul class="foote_bottom_ul_amrc">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <!--foote_bottom_ul_amrc ends here-->
+
+
+            <ul class="social_footer_ul">
+                <li><a href="https://www.linkedin.com/in/rostyslav-khasanov-284855156/"><i class="fab fa-linkedin"></i></a></li>
+                <li><a href="https://www.instagram.com/nejtr1no/"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="https://github.com/RostyslavKhasanov"><i class="fab fa-github"></i></a></li>
+            </ul>
+            <br>
+            <p class="text-center">Copyright @2019 | Developed by <a href="#">Rostyslav Khasanov</a></p>
+
+        </div>
+
+    </footer>
+
+    <script src="public/js/jquery.min.js"></script>
+    <script src="public/js/bootstrap.min.js"></script>
+    <script src="public/js/jquery.twbsPagination.js"></script>
+    <script src="public/js/global.js"></script>
+
+    <script>
+        const SERVER_URL = 'http://localhost:8080/';
+        
+        var gameId = +window.location.search.substring(4);
+        $(document).ready(function() {
+
+            getGame();
+            getFeedbacks();
+            console.log(window.location.search);
+        });
+
+        function getUser1() {
+            $.ajax({
+                url: SERVER_URL + 'users/userid/' + usernameGlobal,
+                method: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function(response) {
+                    let orderPrice = $('#gameProfile .price span').attr("id");
+                    var userID = response.id;
+                    addOrder(userID, orderPrice);
+                }
+            });
+        }
+
+        function getUserAndAddFeedback() {
+            $.ajax({
+                url: SERVER_URL + 'users/userid/' + usernameGlobal,
+                method: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function(response) {
+                    var userID = response.id;
+                    addFeedback(userID);
+                }
+            });
+        }
+
+        $(document).on('click', '#feedbackContainer button', function(e) {
+            getUserAndAddFeedback();
+            setTimeout(function() {window.location.reload();}, 1000);
+        });
+
+
+        $(document).on('click', '#addOrderForm button', function(e) {
+            e.preventDefault();
+            getUser1();
+        });
+
+        function addFeedback(userID) {
+            let feedback = {
+                text: $('#feedbackTextArea').val(),
+                user: {
+                    id: userID
+                },
+                game: {
+                    id : gameId
+                }
+            }
+
+            $.ajax({
+                url: SERVER_URL + 'feedback',
+                method: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(feedback),
+                complete: function(res) {
+                    console.log(res);
+                    if (res.status == 409) {
+                        $('#errorMessage').html(res.responseJSON.message);
+                    }
+                }
+            })
+        }
+
+        function addOrder(userID, orderPrice) {
+
+
+            let order = {
+                user: {
+                    id: userID
+                },
+                game: {
+                    id: gameId
+                },
+                price: orderPrice,
+                payment: $('#payment option:selected').val()
+            }
+
+            $.ajax({
+                url: SERVER_URL + 'orders',
+                method: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(order),
+                complete: function(res) {
+                    console.log(res);
+                    if (res.status == 201) {
+                        alert('Order is added!');
+                    }
+                    if (res.status == 409) {
+                        $('#errorMessage').html(res.responseJSON.message);
+                    }
+                }
+            })
+        }
+
+        function getGame() {
+            let imgUrl = SERVER_URL + 'games/image?fileName=';
+            $.ajax({
+                url: SERVER_URL + 'games/search' + window.location.search,
+                method: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function(response) {
+
+                    var str = "";
+                    for (i = 0; i < response.categories.length; i++) {
+                        str = str + response.categories[i].name + " ";
+                    }
+                    var arr = str.split(" ");
+                    $('#gameProfile #imageDev').append(
+                        `
+                    <img src="${response.image !== null ? (imgUrl + response.image) : ''}"" class = "img-fluid" alt="" id="gameImage">
+                    
+                            `
+                    );
+
+                    $('#gameProfile .dev').append(
+                        `
+                            <h6>Developer: <a href="#" class="badge badge-primary">${response.developer.name}</a></h6>
+                        `
+                    );
+
+                    for (i = 0; i < arr.length; i++) {
+                        $('#gameProfile .categories h6').append(
+                            `
+                        <span class="badge badge-info">${arr[i]}</span>
+                        `
+                        );
+                    }
+
+                    $('#gameProfile .price').append(
+                        `
+                            <h6>Price: <span class="badge badge-success" id="${response.price}">${response.price}</span></h6>
+                        `
+                    );
+
+                    $('#gameDescription h3').append(
+                        `
+                            ${response.name}
+                            `
+                    );
+
+                    $('#gameDescription p').append(
+                        `
+                        ${response.description}     `
+                    );
+
+                    $('#photoOrder').append(
+                        `<img src="${response.image !== null ? (imgUrl + response.image) : ''}"" alt="" id="gameOrderImage">`
+                    );
+
+                    $('#orderDescription').append(
+                        `
+                    ${response.name}
+                    <h6>Price: <span class="badge badge-success">${response.price}</span></h6>
+`
+                    );
+                }
+            });
+        }
+
+        function getFeedbacks() {
+            let imgUrl = SERVER_URL + 'users/image?fileName='
+            $.ajax({
+                url: SERVER_URL + 'feedback?id=' + gameId,
+                method: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                complete: function(response) {
+                    $.each(response.responseJSON, function(key, value) {
+                        $('#feedbackContainer').append(
+                            `
+                            <div class="row" id="feedbackBody">
+                            <div class="col-1" id="feedbackPhoto">
+                <img src="${value.user.image !== null ? (imgUrl + value.user.image) : defaultImg}"" width="100%" , height="100%" class = "img-fluid rounded-circle" id = "userFeedbackPhoto">
+            </div>
+            <div class="col-11">
+                <h6>${value.user.username} | ${value.date}</h6>
+                <font>${value.text}</font>
+            </div>
+                            </div>
+                            `
+                        );
+                    });
+                }
+            });
+        }
+
+    </script>
+
+
+</body>
+
+</html>
