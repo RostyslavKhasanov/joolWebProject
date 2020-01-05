@@ -49,23 +49,5 @@ public class JoolApplication implements WebMvcConfigurer, CommandLineRunner {
 
             roleRepository.save(entity);
         }
-
-
-        /*if (true) {
-            UserEntity user = new UserEntity();
-            user.setUsername("admin");
-            user.setPassword(passwordEncoder.encode("111111111"));
-            user.setGender(GenderEnum.MALE);
-            user.setEmail("rostuk.khasanovee@gmail.com");
-            user.setAge(18);
-
-            RoleEntity role = roleRepository.findByName("ADMIN")
-                    .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
-
-            Set<RoleEntity> roles = new HashSet<>();
-            roles.add(role);
-            user.setRoles(roles);
-            userRepository.save(user);
-        }*/
     }
 }

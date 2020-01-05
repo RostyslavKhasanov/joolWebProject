@@ -60,6 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/orders/{id}").hasAnyRole("ADMIN", "USER")
                 .antMatchers(HttpMethod.GET,"/users/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers(HttpMethod.GET,"/orders/all").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/").permitAll()
                 .anyRequest().authenticated();
 
         http.exceptionHandling().authenticationEntryPoint(unauthorizeHandler)
