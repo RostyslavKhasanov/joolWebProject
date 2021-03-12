@@ -36,7 +36,7 @@ public class DeveloperServiceImpl implements DeveloperService {
     @Override
     public void deleteDeveloperById(Long id) {
         DeveloperEntity developerEntity = developerRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Could not delete product with id[" + id + "]. Not founds")
+                () -> new ResourceNotFoundException("Could not delete product with id[" + id + "].")
         );
         developerRepository.deleteById(id);
     }
